@@ -1,0 +1,121 @@
+[
+  {
+    "nome": "USF Aristides Rodrigues (Posto de Saúde do Triângulo)",
+    "tipo": "Centro médico público",
+    "endereço": "R. Felippe Malaman, 1441",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-8095"
+  },
+  {
+    "nome": "Usf Arnaldo Pereira",
+    "tipo": "Centro médico público",
+    "endereço": "R. Siqueira Campos, 3790",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-8069"
+  },
+  {
+    "nome": "USF Roque Di Mattia Pirassununga",
+    "tipo": "Posto de saúde comunitário",
+    "endereço": "R. Antônio Del Nero, 2800",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3563-0468"
+  },
+  {
+    "nome": "Usf Dr João Antonio Del Nero",
+    "tipo": "Posto de saúde comunitário",
+    "endereço": "Av. Dr. Ivo Xavier Ferreira, s/n",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-5445"
+  },
+  {
+    "nome": "Usf Dr Arthur Del Nero jr",
+    "tipo": "Centro médico público",
+    "endereço": "R. Osvaldo Roberto do Vale, 5102",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-2050"
+  },
+  {
+    "nome": "USF Angelina Orsi Ferrarezi Pirassununga",
+    "tipo": "Centro médico público",
+    "endereço": "R. Odorico Viêira, 1330",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-8063"
+  },
+  {
+    "nome": "USF VILA PINHEIRO",
+    "tipo": "Posto de saúde comunitário",
+    "endereço": "R. Duque de Caxias, 649",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-2020"
+  },
+  {
+    "nome": "Usf Guaraciaba Vanin (Posto da Raia)",
+    "tipo": "Posto de saúde comunitário",
+    "endereço": "R. Pedro Camargo Neves, 994",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-6216"
+  },
+  {
+    "nome": "USF Ana Paula Ferrari Pirassununga",
+    "tipo": "Centro médico público",
+    "endereço": "R. Amazonas, 880",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-1218"
+  },
+  {
+    "nome": "USF Guaraciaba Vanin Pirassununga",
+    "tipo": "Centro médico público",
+    "endereço": "R. Pedro Camargo Neves, 1918",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-6216"
+  },
+  {
+    "nome": "USF Jardim das Laranjeiras Pirassununga",
+    "tipo": "Centro médico público",
+    "endereço": "R. Mario Geraldo Silva, 1692",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-1261"
+  },
+  {
+    "nome": "USF JARDIM FERRAREZZI",
+    "tipo": "Posto de saúde comunitário",
+    "endereço": "R. Mario Ferrarezi, 1",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-8063"
+  },
+  {
+    "nome": "USF Dra Lucia Mocho Rosa Tosi Pirassununga",
+    "tipo": "Centro médico público",
+    "endereço": "R. Sebastião Alves Ferraz, 334",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-7109"
+  },
+  {
+    "nome": "Usf Dr Rubens Luis Costa",
+    "tipo": "Centro médico público",
+    "endereço": "Rua Paulo Moreira, s/n – Parque Clayton Malaman",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-6201"
+  },
+  {
+    "nome": "USF João Balbi Pirassununga",
+    "tipo": "Centro médico público",
+    "endereço": "Av. São Lucas, 384",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3565-3208"
+  },
+  {
+    "nome": "Usf José Marafão",
+    "tipo": "Centro médico público",
+    "endereço": "R. Antônio Polé, 439",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3565-3296"
+  },
+  {
+    "nome": "USF Orlando Sengling",
+    "tipo": "Médico de família",
+    "endereço": "R. Guido Trevisan, 137",
+    "horario": "Fechado ⋅ Abre seg. às 07:00",
+    "telefone": "(19) 3562-2020"
+  }
+]

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergências Médicas Pirassununga</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Emergências Médicas Pirassununga</h1>
+        <p class="subtitle">Encontre hospitais abertos agora</p>
+    </header>
+
+    <nav class="controls">
+        <select id="plano-saude" onchange="updateView()" class="select-input">
+            <option value="todos">Todos os Hospitais</option>
+            <option value="publico">Saúde Pública</option>
+            <option value="privado">Hospitais Privados</option>
+        </select>
+        <button onclick="findNearestHospital()" class="primary-button">
+            Encontrar Hospital Mais Próximo
+        </button>
+        <button onclick="showAllHospitals()" class="secondary-button">
+            Ver Outros Hospitais
+        </button>
+    </nav>
+
+    <main>
+        <div id="map"></div>
+        <div id="hospital-info" class="info-panel"></div>
+    </main>
+
+    <script>
+        const hospitals = [
+            {
+                name: "Santa Casa de Misericórdia de Pirassununga",
+                location: [-21.9964289, -47.4222628], // Coordenadas da Av. Newton Prado
+                address: "Av. Newton Prado, 1883 - Centro",
+                cep: "13631-045",
+                phone: "(19) 3565-8100",
+                hours: "24 horas",
+                emergency: true,
+                tipo: "publico",
+                open24h: true,
+                especialidades: ["Emergência", "Cirurgia", "Maternidade"]
+            },
+            {
+                name: "Hospital Unimed Pirassununga",
+                location: [-22.01030255, -47.42363229721573],
+                address: "R. Joaquim Procópio de Araújo, 3178 - Centro",
+                cep: "13631-020",
+                phone: "(19) 3565-8700",
+                hours: "24 horas",
+                emergency: true,
+                tipo: "privado",
+                open24h: true,
+                especialidades: ["Emergência", "Cirurgia", "Clínica Médica"]
+            },
+            {
+                name: "CEM - Centro de Especialidades Médicas",
+                location: [-22.012212172100142, -47.43061244487763],
+                address: "Av. Antônio Joaquim Mendes, 1001 - Jardim Europa",
+                cep: "13631-110",
+                phone: "(19) 3563-5050",
+                hours: "07:00 às 19:00",
+                emergency: false,
+                tipo: "publico",
+                open24h: false,
+                especialidades: ["Consultas", "Exames"]
+            }
+        ];
+
+        // Configuração inicial do mapa
+        const map = L.map('map', {
+            zoomControl: true,
+            minZoom: 13,
+            maxZoom: 18,
+        }).setView([-21.997, -47.425], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        let markers = {};
+
+        function isHospitalOpen(hospital) {
+            const now = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+            const hour = new Date(now).getHours();
+            const day = new Date(now).getDay();
+
+            if (hospital.open24h) return true;
+
+            // Para o CEM: aberto de segunda a sexta, das 7h às 19h
+            if (!hospital.open24h && (day === 0 || day === 6)) return false;
+            return hour >= 7 && hour < 19;
+        }
+
+        function findNearestHospital() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const userLat = position.coords.latitude;
+                        const userLon = position.coords.longitude;
+
+                        let nearestHospital = null;
+                        let shortestDistance = Infinity;
+                        const planoSelecionado = document.getElementById("plano-saude").value;
+
+                        hospitals.forEach(hospital => {
+                            if (isHospitalOpen(hospital) &&
+                                (planoSelecionado === "todos" ||
+                                 hospital.tipo === planoSelecionado)) {
+                                const distance = calculateDistance(
+                                    userLat, userLon,
+                                    hospital.location[0],
+                                    hospital.location[1]
+                                );
+                                if (distance < shortestDistance) {
+                                    shortestDistance = distance;
+                                    nearestHospital = hospital;
+                                }
+                            }
+                        });
+
+                        clearMarkers();
+                        if (nearestHospital) {
+                            showHospital(nearestHospital);
+                            addMarker(nearestHospital);
+                            map.setView(nearestHospital.location, 16);
+                        } else {
+                            alert("Nenhum hospital encontrado aberto com o plano selecionado.");
+                        }
+                    },
+                    (error) => {
+                        alert("Erro ao obter sua localização. Por favor, permita o acesso à localização.");
+                    }
+                );
+            } else {
+                alert("Seu navegador não suporta geolocalização.");
+            }
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a =
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        function showAllHospitals() {
+            clearMarkers();
+            const planoSelecionado = document.getElementById("plano-saude").value;
+
+            hospitals.forEach(hospital => {
+                if (planoSelecionado === "todos" || hospital.tipo === planoSelecionado) {
+                    addMarker(hospital);
+                }
+            });
+
+            map.setView([-21.997, -47.425], 14);
+        }
+
+        function updateView() {
+            clearMarkers();
+            document.getElementById('hospital-info').style.display = 'none';
+        }
+
+        function clearMarkers() {
+            Object.values(markers).forEach(marker => map.removeLayer(marker));
+            markers = {};
+        }
+
+        function addMarker(hospital) {
+            const marker = L.marker(hospital.location)
+                .bindPopup(createPopupContent(hospital))
+                .addTo(map);
+
+            marker.on('click', () => showHospital(hospital));
+            markers[hospital.name] = marker;
+        }
+
+        function createPopupContent(hospital) {
+            const status = isHospitalOpen(hospital) ?
+                '<span class="status-open">Aberto Agora</span>' :
+                '<span class="status-closed">Fechado</span>';
+
+            return `
+                <div class="popup-content">
+                    <h3>${hospital.name}</h3>
+                    <p>${status}</p>
+                    <p><strong>Telefone:</strong> ${hospital.phone}</p>
+                    <p><strong>Horário:</strong> ${hospital.hours}</p>
+                </div>
+            `;
+        }
+
+        function showHospital(hospital) {
+            const infoPanel = document.getElementById('hospital-info');
+            const status = isHospitalOpen(hospital) ?
+                '<span class="status-open">Aberto Agora</span>' :
+                '<span class="status-closed">Fechado</span>';
+
+            infoPanel.innerHTML = `
+                <h2>${hospital.name}</h2>
+                <p class="status">${status}</p>
+                <p><strong>Endereço:</strong> ${hospital.address}</p>
+                <p><strong>CEP:</strong> ${hospital.cep}</p>
+                <p><strong>Telefone:</strong> ${hospital.phone}</p>
+                <p><strong>Horário:</strong> ${hospital.hours}</p>
+                <p><strong>Tipo:</strong> ${hospital.tipo === 'publico' ? 'Público' : 'Privado'}</p>
+                <p><strong>Especialidades:</strong></p>
+                <ul>
+                    ${hospital.especialidades.map(esp => `<li>${esp}</li>`).join('')}
+                </ul>
+                <button onclick="openDirections(${hospital.location[0]}, ${hospital.location[1]})" class="direction-button">
+                    Como Chegar
+                </button>
+            `;
+            infoPanel.style.display = 'block';
+        }
+
+        function openDirections(lat, lng) {
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+        }
+
+        // Não mostra nenhum marcador inicialmente
+        clearMarkers();
+    </script>
+</body>
+</html>
+
