@@ -1,0 +1,38 @@
+/* Melhorar contraste */
+body {
+    color: #333;
+    background-color: #fff;
+}
+
+.status-open {
+    color: green;
+}
+
+.status-closed {
+    color: red;
+}
+
+/* Foco visível */
+:focus {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+}
+
+/* Botões de ajuste de fonte */
+button {
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Estilo para o expander */
+.stExpander {
+    margin-bottom: 20px;
+}
+
+/* Estilo para o formulário de rota */
+.stTextInput {
+    width: 100%;
+    margin-bottom: 10px;
+}

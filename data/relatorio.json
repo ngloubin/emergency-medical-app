@@ -1,0 +1,50 @@
+{
+    "data_geracao": "2025-02-21 20:26:40",
+    "hospitais": {
+        "Santa Casa de Misericórdia de Pirassununga": {
+            "informacoes": {
+                "endereco": "Av. Newton Prado, 1883 - Centro",
+                "telefone": "(19) 3565-8100",
+                "tipo": "Público"
+            },
+            "avaliacoes": {
+                "media_estrelas": 0,
+                "total_avaliacoes": 0,
+                "comentarios": []
+            },
+            "denuncias": [
+                {
+                    "data": "2025-02-21 20:26:38",
+                    "descricao": "seila aleatorio\n",
+                    "status": "Pendente"
+                }
+            ]
+        },
+        "Hospital Unimed Pirassununga": {
+            "informacoes": {
+                "endereco": "R. Joaquim Procópio de Araújo, 3178 - Centro",
+                "telefone": "(19) 3565-8700",
+                "tipo": "Privado"
+            },
+            "avaliacoes": {
+                "media_estrelas": 0,
+                "total_avaliacoes": 0,
+                "comentarios": []
+            },
+            "denuncias": []
+        },
+        "CEM - Centro de Especialidades Médicas": {
+            "informacoes": {
+                "endereco": "Av. Antônio Joaquim Mendes, 1001 - Jardim Europa",
+                "telefone": "(19) 3563-5050",
+                "tipo": "Público"
+            },
+            "avaliacoes": {
+                "media_estrelas": 0,
+                "total_avaliacoes": 0,
+                "comentarios": []
+            },
+            "denuncias": []
+        }
+    }
+}
