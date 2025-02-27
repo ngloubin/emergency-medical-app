@@ -1,5 +1,5 @@
 {
-    "data_geracao": "2025-02-21 20:26:40",
+    "data_geracao": "2025-02-27 13:49:10",
     "hospitais": {
         "Santa Casa de Misericórdia de Pirassununga": {
             "informacoes": {
@@ -33,18 +33,30 @@
             },
             "denuncias": []
         },
-        "CEM - Centro de Especialidades Médicas": {
+        "(PAM) Dr.Rubens Luiz Costa, ZONA NORTE - Centro de Especialidades Médicas": {
             "informacoes": {
-                "endereco": "Av. Antônio Joaquim Mendes, 1001 - Jardim Europa",
-                "telefone": "(19) 3563-5050",
+                "endereco": "Rua Paulo Moreira, s/n – Parque Clayton Malaman - Jardim Ferrari II, Pirassununga - SP, 13635-240",
+                "telefone": "Não tem ou não foi encontrado",
                 "tipo": "Público"
             },
             "avaliacoes": {
-                "media_estrelas": 0,
-                "total_avaliacoes": 0,
-                "comentarios": []
+                "media_estrelas": 3.0,
+                "total_avaliacoes": 1,
+                "comentarios": [
+                    {
+                        "data": "2025-02-27 13:47:53",
+                        "estrelas": 3,
+                        "comentario": " cbhgarewyhaegyw4yreawyhsedgvsaewt4gszgvewatgwSTGQ443A\\"
+                    }
+                ]
             },
-            "denuncias": []
+            "denuncias": [
+                {
+                    "data": "2025-02-27 13:48:05",
+                    "descricao": "q3yezgjhrwsw bnvbgtdgvf mkvtghcfdb bmhuyjkbtgfcx bmn\n",
+                    "status": "Pendente"
+                }
+            ]
         }
     }
 }
